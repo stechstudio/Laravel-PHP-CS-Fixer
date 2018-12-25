@@ -191,16 +191,19 @@ class FixCommand extends Command
             $this->toolInfo
         );
 
-        $this->info(sprintf(
-            'Loaded config <comment>%s</comment>%s.',
-            $resolver->getConfig()->getName(),
-            null === $resolver->getConfigFile() ? '' : ' from "'.$resolver->getConfigFile().'"'
-        ));
+        if(!config('fixer.fixer.suppress') === true) {
+            $this->info(sprintf(
+                'Loaded config <comment>%s</comment>%s.',
+                $resolver->getConfig()
+                    ->getName(),
+                null === $resolver->getConfigFile() ? '' : ' from "' . $resolver->getConfigFile() . '"'
+            ));
 
-        if ($resolver->getUsingCache()) {
-            $cacheFile = $resolver->getCacheFile();
-            if (is_file($cacheFile)) {
-                $this->info(sprintf('Using cache file <comment>%s</comment>.', $cacheFile));
+            if ($resolver->getUsingCache()) {
+                $cacheFile = $resolver->getCacheFile();
+                if (is_file($cacheFile)) {
+                    $this->info(sprintf('Using cache file <comment>%s</comment>.', $cacheFile));
+                }
             }
         }
 
