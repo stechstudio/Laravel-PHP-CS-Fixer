@@ -29,6 +29,10 @@ do all the other laravel packages you use.
 composer require stechstudio/laravel-php-cs-fixer
 ```
 
+
+
+> **Note**: If you are using Laravel 5.5, no need to register the provider. Laravel PHP CS Fixer supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
+
 ### Register the Provider:
 
 For Lumen services, add:

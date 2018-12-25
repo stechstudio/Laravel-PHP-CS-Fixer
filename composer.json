@@ -36,6 +36,12 @@
     "require-dev": {
         "illuminate/console": "5.4.x|5.5.x|5.6.x"
     },
-
+    "extra": {
+        "laravel": {
+            "providers": [
+                "STS\\Fixer\\FixerServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "stable"
 }
