@@ -19,9 +19,9 @@ do all the other laravel packages you use.
 
 ## Versions and compatibility
 > **Note:** This documentation was written for Laravel 5.5.
-* PHP Version: ">=7.0 <7.3"
-* Laravel/Lumen: "5.4.x|5.5.x"
-* PHP-CS-Fixer: "2.9.*"
+* PHP Version: ">=7.0"
+* Laravel/Lumen: "5.5.x|5.6.x|5.7.x|5.8.x"
+* PHP-CS-Fixer: "2.14.*"
 
 ## Installation
 
@@ -29,24 +29,23 @@ do all the other laravel packages you use.
 composer require stechstudio/laravel-php-cs-fixer
 ```
 
+> **Note**: If you are using Laravel 5.5 or greater, no need to register the provider. Laravel PHP CS Fixer supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
 
+### Manually Register the Provider for Laravael 5.4:
 
-> **Note**: If you are using Laravel 5.5, no need to register the provider. Laravel PHP CS Fixer supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
-
-### Register the Provider:
-
-For Lumen services, add:
-
-```php
-$app->register(STS\Fixer\FixerServiceProvider::class);
-```
-to `bootstrap/app.php`. For Laravel applications, add:
+#### Laravel 
+Add the following to the `providers` array in `config/app.php`.:
 
 ```php
 STS\Fixer\FixerServiceProvider::class,
 ```
 
-to the `providers` array in `config/app.php`.
+#### Lumen
+Add the following to `bootstrap/app.php`.:
+
+```php
+$app->register(STS\Fixer\FixerServiceProvider::class);
+```
 
 ## Configuration
 The default rule configuration is in the `fixer.php` and is intended to match the rules used by the Laravel Framework.
@@ -153,4 +152,3 @@ $ php artisan fixer:fix
 // Check all the files in the `app` directory
 $ php artisan fixer:fix --path app --dry-run 
 ```
-
