@@ -31,7 +31,7 @@ composer require stechstudio/laravel-php-cs-fixer
 
 > **Note**: If you are using Laravel 5.5 or greater, no need to register the provider. Laravel PHP CS Fixer supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
 
-### Manually Register the Provider for Laravael 5.4:
+### Manually Register the Provider for Laravel 5.4:
 
 #### Laravel 
 Add the following to the `providers` array in `config/app.php`.:
