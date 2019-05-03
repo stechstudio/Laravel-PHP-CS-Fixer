@@ -1,47 +1,47 @@
 {
-    "name": "stechstudio/laravel-php-cs-fixer",
-    "description": "Easily format your Laravel Code with this Configuration file and accompanying artisan command.",
-    "type": "library",
-    "license": "MIT",
-    "keywords": [
-        "php-cs-fixer",
-        "develop",
-        "artisan",
-        "lumen",
-        "laravel",
-        "coding",
-        "standards",
-        "fixer"
+  "name": "stechstudio/laravel-php-cs-fixer",
+  "description": "Easily format your Laravel Code with this Configuration file and accompanying artisan command.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php-cs-fixer",
+    "develop",
+    "artisan",
+    "lumen",
+    "laravel",
+    "coding",
+    "standards",
+    "fixer"
+  ],
+  "autoload": {
+    "classmap": [
     ],
-    "autoload": {
-        "classmap": [
-        ],
-        "psr-4": {
-            "STS\\Fixer\\": "src"
-        },
-        "files": [
-        ]
+    "psr-4": {
+      "STS\\Fixer\\": "src"
     },
-    "authors": [
-        {
-            "name": "Bubba Hines",
-            "email": "rob@stechstudio.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.0",
-        "illuminate/support": "5.4.x|5.5.x|5.6.x|5.7.x|5.8.x",
-        "friendsofphp/php-cs-fixer": "2.14.*"
-    },
-    "require-dev": {
-        "illuminate/console": "5.4.x|5.5.x|5.6.x|5.7.x|5.8.x"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "STS\\Fixer\\FixerServiceProvider"
-            ]
-        }
-    },
-    "minimum-stability": "stable"
+    "files": [
+    ]
+  },
+  "authors": [
+    {
+      "name": "Bubba Hines",
+      "email": "rob@stechstudio.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": "5.4.x|5.5.x|5.6.x|5.7.x|5.8.x",
+    "friendsofphp/php-cs-fixer": "^2.14"
+  },
+  "require-dev": {
+    "illuminate/console": "5.4.x|5.5.x|5.6.x|5.7.x|5.8.x"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "STS\\Fixer\\FixerServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
 }
