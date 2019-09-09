@@ -87,7 +87,7 @@ return [
 ];
 ```
 
-if you want to modify this yourself, just use artisan `artisan vendor:publish --provider="STS\Fixer\FixerServiceProvider"` 
+if you want to modify this yourself, just use artisan `php artisan vendor:publish --provider="STS\Fixer\FixerServiceProvider"` 
 and it will put the default configuration in 'config/fixer.php'. Check the  
 [PHP-CS-Fixer/README](https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage) for valid rules.
 
