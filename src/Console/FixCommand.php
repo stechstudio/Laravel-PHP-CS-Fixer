@@ -217,7 +217,7 @@ class FixCommand extends Command
         return $resolver;
     }
 
-    protected function validateOptions(): void
+    protected function validateOptions()
     {
         if (null !== $this->option('config') && null !== $this->option('rules')) {
             if (getenv('PHP_CS_FIXER_FUTURE_MODE')) {
