@@ -20,7 +20,7 @@ do all the other laravel packages you use.
 ## Versions and compatibility
 > **Note:** This documentation was written for Laravel 5.5.
 * PHP Version: ">=7.0"
-* Laravel/Lumen: "^5.4|^6.0"
+* Laravel/Lumen: "^5.4|^6.0|^7.0"
 * PHP-CS-Fixer: "2.14.*"
 
 ## Installation
