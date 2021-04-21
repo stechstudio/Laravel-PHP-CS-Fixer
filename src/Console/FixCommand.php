@@ -185,7 +185,7 @@ class FixCommand extends Command
                 'diff' => $this->option('diff'),
                 'diff-format' => $this->option('diff-format'),
                 'stop-on-violation' => $this->option('stop-on-violation'),
-                'verbosity' => $this->verbosity,
+                'verbosity' => $this->getOutput()->getVerbosity(),
                 'show-progress' => $this->option('show-progress'),
             ],
             getcwd(),
