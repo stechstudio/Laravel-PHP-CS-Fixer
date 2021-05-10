@@ -14,13 +14,11 @@
     "fixer"
   ],
   "autoload": {
-    "classmap": [
-    ],
+    "classmap": [],
     "psr-4": {
       "STS\\Fixer\\": "src"
     },
-    "files": [
-    ]
+    "files": []
   },
   "authors": [
     {
@@ -43,6 +41,11 @@
         "STS\\Fixer\\FixerServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
+    ]
   },
   "minimum-stability": "stable"
 }
