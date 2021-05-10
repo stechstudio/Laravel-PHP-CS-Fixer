@@ -31,10 +31,10 @@
   "require": {
     "php": ">=7.0",
     "illuminate/support": "^5.4|^6.0|^7.0|^8.0",
-    "friendsofphp/php-cs-fixer": "^2.18.6"
+    "friendsofphp/php-cs-fixer": "^3.0.0"
   },
   "require-dev": {
-    "illuminate/console": "^5.4|^6.0"
+    "illuminate/console": "^5.4|^6.0|^7.0|^8.0"
   },
   "extra": {
     "laravel": {
