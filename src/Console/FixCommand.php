@@ -56,17 +56,51 @@ class FixCommand extends Command
             {--path=* : The path.}
             {--path-mode=override : Specify path mode (can be override or intersection).}
             {--allow-risky= : Are risky fixers allowed (can be yes or no).}
-            {--config= : The path to a .php_cs file.}
+            {--config= : The path to a .php-cs-fixer.php file.}
             {--dry-run : Only shows which files would have been modified.}
-            {--rules= : The Rules}
-            {--using-cache=yes : Does cache should be used (can be yes or no).}
+            {--rules= : The rules.}
+            {--using-cache=yes : Should cache be used (can be yes or no).}
             {--cache-file= : The path to the cache file.}
             {--diff : Also produce diff for each file.}
-            {--diff-format= : Specify diff format.}
             {--format= : To output results in other formats.}
             {--stop-on-violation : Stop execution on first violation.}
-            {--show-progress= : Type of progress indicator (none, run-in, estimating or estimating-max).}
+            {--show-progress= : Type of progress indicator (none, dots).}
     ';
+
+    /**
+     * Load a default configuration.
+     * 
+     * @var Config
+     */
+    public $defaultConfig;
+
+    /**
+     * Manages Errors for us.
+     * 
+     * @var ErrorsManager
+     */
+    public $errorsManager;
+
+    /**
+     * Dispatches events for us.
+     * 
+     * @var EventDispatcher
+     */
+    public $eventDispatcher;
+
+    /**
+     * Stopwatch.
+     * 
+     * @var Stopwatch
+     */
+    public $stopwatch;
+
+    /**
+     * Our tool info.
+     * 
+     * @var ToolInfo
+     */
+    public $toolInfo;
 
     public function __construct()
     {
@@ -196,7 +230,6 @@ class FixCommand extends Command
                 'cache-file' => $this->option('cache-file'),
                 'format' => $this->option('format'),
                 'diff' => $this->option('diff'),
-                'diff-format' => $this->option('diff-format'),
                 'stop-on-violation' => $this->option('stop-on-violation'),
                 'verbosity' => $this->getOutput()->getVerbosity(),
                 'show-progress' => $this->option('show-progress'),
@@ -205,7 +238,7 @@ class FixCommand extends Command
             $this->toolInfo
         );
 
-        if(!config('fixer.fixer.suppress') === true) {
+        if (!config('fixer.fixer.suppress') === true) {
             $this->info(sprintf(
                 'Loaded config <comment>%s</comment>%s.',
                 $resolver->getConfig()
