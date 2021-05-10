@@ -3,8 +3,10 @@
 namespace STS\Fixer;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use STS\Fixer\Console\FixCommand;
+use STS\Fixer\Console\UpdateRulesCommand;
 
 class FixerServiceProvider extends ServiceProvider
 {
@@ -42,6 +44,7 @@ class FixerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 FixCommand::class,
+                UpdateRulesCommand::class
             ]);
         }
     }
@@ -57,6 +60,7 @@ class FixerServiceProvider extends ServiceProvider
             $this->app->configure('fixer');
         }
         $this->mergeConfigFrom($this->configPath, 'fixer');
+        Config::set('laravel_cs_sha1_checksum', '3f504802e3b3d9dd5eeb08ce34c2073d77fc59c6');
     }
 
     /**
