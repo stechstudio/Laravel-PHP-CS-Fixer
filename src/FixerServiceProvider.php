@@ -18,10 +18,16 @@ class FixerServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $configPath = __DIR__.'/../config/fixer.php';
+    protected $configPath = __DIR__ . '/../config/fixer.php';
 
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                FixCommand::class,
+            ]);
+        }
+
         // helps deal with Lumen vs Laravel differences
         if (function_exists('config_path')) {
             $publishPath = config_path('fixer.php');
