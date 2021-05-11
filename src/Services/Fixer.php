@@ -103,6 +103,21 @@ class Fixer
         return sprintf('Runtime: <info>PHP %s</info>', PHP_VERSION);
     }
 
+    public function isUsingCache()
+    {
+        return $this->configResolver->getUsingCache();
+    }
+
+    public function cacheFileExists()
+    {
+        return is_file($this->configResolver->getCacheFile());
+    }
+
+    public function getCacheFileMessage()
+    {
+        return sprintf('Using cache file "%s".', $this->configResolver->getCacheFile());
+    }
+
     /**
      * @param $resolver
      * @param $stdErr
