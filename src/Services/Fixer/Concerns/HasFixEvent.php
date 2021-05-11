@@ -2,6 +2,7 @@
 
 namespace STS\Fixer\Services\Fixer\Concerns;
 
+use PhpCsFixer\Console\Command\FixCommandExitStatusCalculator;
 use PhpCsFixer\Console\Report\FixReport\ReportSummary;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -40,5 +41,18 @@ trait HasFixEvent
         if (\count($this->getErrorsManager()->getLintErrors()) > 0) {
             $this->getErrorOutput($output)->listErrors('linting after fixing', $this->getErrorsManager()->getLintErrors());
         }
+    }
+
+    public function exitStatus()
+    {
+        $exitStatusCalculator = new FixCommandExitStatusCalculator();
+
+        return $exitStatusCalculator->calculate(
+            $this->configResolver->isDryRun(),
+            \count($this->filesModified) > 0,
+            \count($this->getErrorsManager()->getInvalidErrors()) > 0,
+            \count($this->getErrorsManager()->getExceptionErrors()) > 0,
+            \count($this->getErrorsManager()->getLintErrors()) > 0
+        );
     }
 }

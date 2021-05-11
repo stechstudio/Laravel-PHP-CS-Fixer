@@ -73,8 +73,7 @@ class FixCommand extends Command
         $this->fixerService->fixFiles();
         $this->fixerService->printLegend();
         $this->fixerService->report($this->verbosity, $this->output);
-
-        $this->info('Completed');
+        return $this->fixerService->exitStatus();
     }
 
     protected function verbocityAndValidation()
