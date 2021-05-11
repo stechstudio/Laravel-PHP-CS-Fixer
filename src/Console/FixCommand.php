@@ -83,6 +83,9 @@ class FixCommand extends Command
 
         $this->writeln($fixerService->getLoadedConfigMessage());
 
+        if ($fixerService->isUsingCache() && $fixerService->cacheFileExists()) {
+            $this->writeln($fixerService->getCacheFileMessage());
+        }
 
 
         $this->info('Completed');

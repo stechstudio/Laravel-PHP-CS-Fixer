@@ -43,8 +43,7 @@ class FixerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                FixCommand::class,
-                UpdateRulesCommand::class
+                FixCommand::class
             ]);
         }
     }
