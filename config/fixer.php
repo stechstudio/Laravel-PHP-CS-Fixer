@@ -1,69 +1,152 @@
 <?php
 
 return [
+    /** Will show up as the configuration name when using this rules configurations. */
     'config_name' => 'Laravel Fixer',
-    'fixer' => [
-        'suppress' => env('SUPPRESS_FIXER_INFO', false)
-    ],
+
+    /** By default, we will ignore any and all dot files. */
     'ignore_dot_files' => true,
+
+    /** By default, we will ignore all the source control metadata */
     'ignore_vcs' => true,
+
+    /** The list of directories you want to fix. These are the default laravel directories. */
     'find_directories' => [
         app_path(),
         config_path(),
         database_path(),
         resource_path(),
         base_path('/routes'),
-        //base_path('/tests')
+        base_path('/tests')
 
     ],
+
+    /** We will fix all files in those directories that match a pattern in this list. */
     'file_name_pattern_whitelist' => [
         '*.php',
     ],
+
+    /** However, we will not fix files that match patterns in this list. */
     'file_name_pattern_blacklist' => [
         '*.blade.php',
     ],
+
+    /** 
+     * These are all the rules. 
+     * Find them all at https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/v3.0.0/doc/rules/index.rst
+     */
     'rules' => [
+        /** PHP arrays should be declared using the configured syntax. */
         'array_syntax' => ['syntax' => 'short'],
+
+        /** Binary operators should be surrounded by space as configured. */
         'binary_operator_spaces' => [
             'default' => 'single_space',
             'operators' => ['=>' => null]
         ],
+
+        /** There MUST be one blank line after the namespace declaration. */
         'blank_line_after_namespace' => true,
+
+        /** Ensure there is no code on the same line as the PHP open tag and it is followed by a blank line. */
         'blank_line_after_opening_tag' => true,
+
+        /** An empty line feed must precede any configured statement. */
         'blank_line_before_statement' => [
             'statements' => ['return']
         ],
+
+        /** The body of each structure MUST be enclosed by braces. Braces should be properly placed. Body of braces should be properly indented. */
         'braces' => true,
+
+        /** A single space or none should be between cast and variable. */
         'cast_spaces' => true,
+
+        /** Class, trait and interface elements must be separated with one or none blank line. */
         'class_attributes_separation' => [
             'elements' => ['method']
         ],
+
+        /** Whitespace around the keywords of a class, trait or interfaces definition should be one space. */
         'class_definition' => true,
+
+        /** Concatenation should be spaced according configuration. */
         'concat_space' => [
             'spacing' => 'none'
         ],
+
+        /** Equal sign in declare statement should be surrounded by spaces or not following configuration. */
         'declare_equal_normalize' => true,
+
+        /** The keyword elseif should be used instead of else if so that all control keywords look like single words. */
         'elseif' => true,
+
+        /** PHP code MUST use only UTF-8 without BOM (remove BOM). */
         'encoding' => true,
+
+        /** PHP code must use the long <?php tags or short-echo <?= tags and not other tag variations. */
         'full_opening_tag' => true,
-        'fully_qualified_strict_types' => true, // added by Shift
+
+        /** Transforms imported FQCN parameters and return types in function arguments to short version. */
+        'fully_qualified_strict_types' => true,
+
+        /** Spaces should be properly placed in a function declaration. */
         'function_declaration' => true,
+
+        /** nsure single space between function's argument and its typehint. */
         'function_typehint_space' => true,
+
+        /** Convert heredoc to nowdoc where possible. */
         'heredoc_to_nowdoc' => true,
+
+        /** Include/Require and file path should be divided with a single space. File path should not be placed under brackets. */
         'include' => true,
+
+        /** Pre- or post-increment and decrement operators should be used if possible. */
         'increment_style' => ['style' => 'post'],
+
+        /** Code MUST use configured indentation type. */
         'indentation_type' => true,
+
+        /** Ensure there is no code on the same line as the PHP open tag. */
         'linebreak_after_opening_tag' => true,
+
+        /** All PHP files must use same line ending. */
         'line_ending' => true,
+
+        /** Cast should be written in lower case. */
         'lowercase_cast' => true,
+
+        /**  */
         'lowercase_constants' => true,
+
+        /** PHP keywords MUST be in lower case. */
         'lowercase_keywords' => true,
-        'lowercase_static_reference' => true, // added from Symfony
-        'magic_method_casing' => true, // added from Symfony
+
+        /** Class static references self, static and parent MUST be in lower case. */
+        'lowercase_static_reference' => true,
+
+        /** Magic method definitions and calls must be using the correct casing. */
+        'magic_method_casing' => true,
+
+        /** Magic constants should be referred to using the correct casing */
         'magic_constant_casing' => true,
+
+        /**
+         * In method arguments and method call, there MUST NOT be a space before each comma and 
+         * there MUST be one space after each comma. Argument lists MAY be split across multiple 
+         * lines, where each subsequent line is indented once. When doing so, the first item in the 
+         * list MUST be on the next line, and there MUST be only one argument per line.
+         */
         'method_argument_space' => true,
+
+        /** Function defined by PHP should be called using the correct casing. */
         'native_function_casing' => true,
+
+        /** (risky) Master functions shall be used instead of aliases. */
         'no_alias_functions' => true,
+
+        /** Removes extra blank lines and/or blank lines following configuration. */
         'no_extra_blank_lines' => [
             'tokens' => [
                 'extra',
@@ -72,6 +155,7 @@ return [
                 'use_trait',
             ]
         ],
+        /** There should be no empty lines after class opening brace. */
         'no_blank_lines_after_class_opening' => true,
         'no_blank_lines_after_phpdoc' => true,
         'no_closing_tag' => true,
