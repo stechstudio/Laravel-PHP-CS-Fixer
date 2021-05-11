@@ -1,25 +1,25 @@
 <?php
 
 return [
+    'config_name' => 'Laravel Fixer',
     'fixer' => [
-        'suppress' = env('SUPPRESS_FIXER_INFO', false);
-    ]
+        'suppress' => env('SUPPRESS_FIXER_INFO', false)
+    ],
     'ignore_dot_files' => true,
     'ignore_vcs' => true,
-    'find_directories' = [
-            app_path(),
-            config_path(),
-            database_path(),
-            resource_path(),
-            base_path('/routes'),
-            base_path('/tests')
+    'find_directories' => [
+        app_path(),
+        config_path(),
+        database_path(),
+        resource_path(),
+        base_path('/routes'),
+        //base_path('/tests')
 
     ],
-
     'file_name_pattern_whitelist' => [
         '*.php',
     ],
-    'file_name_pattern_blacklist' =>[
+    'file_name_pattern_blacklist' => [
         '*.blade.php',
     ],
     'rules' => [
