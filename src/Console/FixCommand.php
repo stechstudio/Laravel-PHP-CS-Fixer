@@ -21,6 +21,8 @@ use PhpCsFixer\ConfigurationException\InvalidConfigurationException;
 use PhpCsFixer\Console\Command\FixCommand as CommandFixCommand;
 use PhpCsFixer\ToolInfo;
 use STS\Fixer\Services\Fixer;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class FixCommand extends Command
 {
@@ -31,6 +33,11 @@ class FixCommand extends Command
      */
     protected $name = 'fixer:fix';
 
+    /**
+     * 
+     * @var string
+     */
+    protected $longVersion;
 
     public function __construct()
     {
@@ -39,10 +46,23 @@ class FixCommand extends Command
         $this->setDefinition($fixerCommand->getDefinition());
         $this->setHelp($fixerCommand->getHelp());
         $this->setDescription($fixerCommand->getDescription());
+        $this->fixerApplication = new \PhpCsFixer\Console\Application();
+        $this->longVersion = $this->fixerApplication->getLongVersion();
+
+
+
+        // 'v' => OutputInterface::VERBOSITY_VERBOSE,
+        // 'vv' => OutputInterface::VERBOSITY_VERY_VERBOSE,
+        // 'vvv' => OutputInterface::VERBOSITY_DEBUG,
+        // 'quiet' => OutputInterface::VERBOSITY_QUIET,
+        // 'normal' => OutputInterface::VERBOSITY_NORMAL,
+        //$this->setVerbosity();
     }
 
     public function handle()
     {
+        $this->setVerbosity($this->output->getVerbosity());
+
         if (null !== $this->option('config') && null !== $this->option('rules')) {
             throw new InvalidConfigurationException('Passing both `--config` and `--rules` options is not allowed.');
         }
@@ -63,8 +83,22 @@ class FixCommand extends Command
             'show-progress' => $this->option('show-progress'),
         ];
 
-        (new Fixer($this->input, $this->output, $cli_input));
+        $fixerService = new Fixer($this->input, $this->output, $cli_input);
 
-        $this->info('erm');
+        if (OutputInterface::VERBOSITY_VERBOSE <= $this->verbosity) {
+            $this->info($this->longVersion);
+            $this->writeln($fixerService->getPhpRuntimeMessage());
+        }
+
+        $this->writeln($fixerService->getLoadedConfigMessage());
+
+
+
+        $this->info('Completed');
+    }
+
+    public function writeln($messages, int $type = SymfonyStyle::OUTPUT_NORMAL)
+    {
+        $this->output->writeln($messages, $type);
     }
 }
