@@ -39,6 +39,13 @@ class FixCommand extends Command
      */
     protected $longVersion;
 
+    /**
+     * 
+     * @var Fixer
+     */
+    protected $fixerService;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -50,15 +57,59 @@ class FixCommand extends Command
         $this->longVersion = $this->fixerApplication->getLongVersion();
     }
 
+
+
     public function handle()
     {
-        $this->setVerbosity($this->output->getVerbosity());
+        try {
+            $this->verbocityAndValidation();
+        } catch (InvalidConfigurationException $exception) {
+            $this->error($exception->getMessage());
+            return 1;
+        }
 
+        $this->writePreamble();
+
+        $this->fixerService->fixFiles();
+        $this->fixerService->printLegend();
+        $this->fixerService->report($this->verbosity, $this->output);
+
+        $this->info('Completed');
+    }
+
+    protected function verbocityAndValidation()
+    {
+        $this->setVerbosity($this->output->getVerbosity());
         if (null !== $this->option('config') && null !== $this->option('rules')) {
             throw new InvalidConfigurationException('Passing both `--config` and `--rules` options is not allowed.');
         }
+    }
 
-        $cli_input =  [
+    protected function getFixerService(): Fixer
+    {
+        if ($this->fixerService === null) {
+            $this->fixerService = new Fixer($this->output, $this->composeCliInput());
+        }
+
+        return $this->fixerService;
+    }
+    protected function writePreamble()
+    {
+        if (OutputInterface::VERBOSITY_VERBOSE <= $this->verbosity) {
+            $this->info($this->longVersion);
+            $this->writeln($this->getFixerService()->getPhpRuntimeMessage());
+        }
+
+        $this->writeln($this->getFixerService()->getLoadedConfigMessage());
+
+        if ($this->getFixerService()->isUsingCache() && $this->getFixerService()->cacheFileExists()) {
+            $this->writeln($this->getFixerService()->getCacheFileMessage());
+        }
+    }
+
+    protected function composeCliInput()
+    {
+        return [
             'allow-risky' => $this->option('allow-risky'),
             'config' => $this->option('config'),
             'dry-run' => $this->option('dry-run'),
@@ -73,25 +124,8 @@ class FixCommand extends Command
             'verbosity' => $this->verbosity,
             'show-progress' => $this->option('show-progress'),
         ];
-
-        $fixerService = new Fixer($this->input, $this->output, $cli_input);
-
-        if (OutputInterface::VERBOSITY_VERBOSE <= $this->verbosity) {
-            $this->info($this->longVersion);
-            $this->writeln($fixerService->getPhpRuntimeMessage());
-        }
-
-        $this->writeln($fixerService->getLoadedConfigMessage());
-
-        if ($fixerService->isUsingCache() && $fixerService->cacheFileExists()) {
-            $this->writeln($fixerService->getCacheFileMessage());
-        }
-
-
-        $this->info('Completed');
     }
-
-    public function writeln($messages, int $type = SymfonyStyle::OUTPUT_NORMAL)
+    protected function writeln($messages, int $type = SymfonyStyle::OUTPUT_NORMAL)
     {
         $this->output->writeln($messages, $type);
     }
