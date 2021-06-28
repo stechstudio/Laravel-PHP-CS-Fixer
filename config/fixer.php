@@ -12,8 +12,8 @@ return [
 
     /** The list of directories you want to fix. These are the default laravel directories. */
     'find_directories' => [
-        app_path(),
-        config_path(),
+        base_path('/app'),
+        base_path('/config'),
         database_path(),
         resource_path(),
         base_path('/routes'),
