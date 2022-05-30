@@ -11,7 +11,7 @@ use PhpCsFixer\Console\ConfigurationResolver;
 trait HasConfigurationResolver
 {
     /**
-     * 
+     *
      * @var ConfigurationResolver
      */
     protected $configResolver;
@@ -19,6 +19,7 @@ trait HasConfigurationResolver
     public function setResolver(array $options, ?ConfigInterface $config = null, ?string $cwd = null, ?ToolInfoInterface $toolInfo = null)
     {
         $config = $config ?: new Config(config('fixer.config_name', 'Laravel'));
+        $config->setRules($options['rules'] ?: config('fixer.rules'));
         $cwd = $cwd ?: getcwd();
         $toolInfo = $toolInfo ?: new ToolInfo();
         $this->configResolver = new ConfigurationResolver($config, $options, $cwd, $toolInfo);

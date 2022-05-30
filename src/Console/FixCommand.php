@@ -1,14 +1,14 @@
 <?php
 /*
- * This file was originally part of PHP CS Fixer (https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/v2.14.6/src/Console/Command/FixCommand.php) 
- * 
+ * This file was originally part of PHP CS Fixer (https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/v2.14.6/src/Console/Command/FixCommand.php)
+ *
  *
  * (c) Fabien Potencier <fabien@symfony.com>
  *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
- * 
+ *
  * It is replicated and modified here due to them having made it a `final` class.
  */
 
@@ -34,13 +34,13 @@ class FixCommand extends Command
     protected $name = 'fixer:fix';
 
     /**
-     * 
+     *
      * @var string
      */
     protected $longVersion;
 
     /**
-     * 
+     *
      * @var Fixer
      */
     protected $fixerService;
@@ -109,7 +109,7 @@ class FixCommand extends Command
     protected function composeCliInput()
     {
         return [
-            'allow-risky' => $this->option('allow-risky'),
+            'allow-risky' => $this->option('allow-risky') ?? 'yes',
             'config' => $this->option('config'),
             'dry-run' => $this->option('dry-run'),
             'rules' => $this->option('rules'),
