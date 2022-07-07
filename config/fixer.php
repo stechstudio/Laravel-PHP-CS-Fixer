@@ -31,8 +31,8 @@ return [
         '*.blade.php',
     ],
 
-    /** 
-     * These are all the rules. 
+    /**
+     * These are all the rules.
      * Find them all at https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/v3.0.0/doc/rules/index.rst
      */
     'rules' => [
@@ -64,7 +64,7 @@ return [
 
         /** Class, trait and interface elements must be separated with one or none blank line. */
         'class_attributes_separation' => [
-            'elements' => ['method']
+            'elements' => ['method' => 'one'],
         ],
 
         /** Whitespace around the keywords of a class, trait or interfaces definition should be one space. */
@@ -117,8 +117,8 @@ return [
         /** Cast should be written in lower case. */
         'lowercase_cast' => true,
 
-        /**  */
-        'lowercase_constants' => true,
+        /** The PHP constants true, false, and null MUST be written using the correct casing. */
+        'constant_case' => true,
 
         /** PHP keywords MUST be in lower case. */
         'lowercase_keywords' => true,
@@ -133,9 +133,9 @@ return [
         'magic_constant_casing' => true,
 
         /**
-         * In method arguments and method call, there MUST NOT be a space before each comma and 
-         * there MUST be one space after each comma. Argument lists MAY be split across multiple 
-         * lines, where each subsequent line is indented once. When doing so, the first item in the 
+         * In method arguments and method call, there MUST NOT be a space before each comma and
+         * there MUST be one space after each comma. Argument lists MAY be split across multiple
+         * lines, where each subsequent line is indented once. When doing so, the first item in the
          * list MUST be on the next line, and there MUST be only one argument per line.
          */
         'method_argument_space' => true,
@@ -180,16 +180,20 @@ return [
         'no_trailing_whitespace' => true,
         'no_trailing_whitespace_in_comment' => true,
         'no_unneeded_control_parentheses' => true,
+        'no_unused_imports' => true,
+
+        /* (risky) In function arguments there must not be arguments with default values before non-default ones. */
         'no_unreachable_default_argument_value' => true,
+
         'no_useless_return' => true,
         'no_whitespace_before_comma_in_array' => true,
         'no_whitespace_in_blank_line' => true,
         'normalize_index_brace' => true,
         'not_operator_with_successor_space' => true,
         'object_operator_without_whitespace' => true,
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'phpdoc_indent' => true,
-        'phpdoc_inline_tag' => true,
+        'phpdoc_inline_tag_normalizer' => true,
         'phpdoc_no_access' => true,
         'phpdoc_no_package' => true,
         'phpdoc_no_useless_inheritdoc' => true,
@@ -200,8 +204,13 @@ return [
         'phpdoc_trim' => true,
         'phpdoc_types' => true,
         'phpdoc_var_without_name' => true,
-        'psr4' => true,
+
+        /* (risky) Classes must be in a path that matches their namespace, be at least one namespace deep and the class name should match the file name. */
+        'psr_autoloading' => true,
+
+        /* (risky) Inside class or interface element self should be preferred to the class name itself. */
         'self_accessor' => true,
+
         'short_scalar_cast' => true,
         'simplified_null_return' => false, // disabled by Shift
         'single_blank_line_at_eof' => true,
@@ -218,7 +227,7 @@ return [
         'switch_case_semicolon_to_colon' => true,
         'switch_case_space' => true,
         'ternary_operator_spaces' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => ['elements' => ['arrays']],
         'trim_array_spaces' => true,
         'unary_operator_spaces' => true,
         'visibility_required' => [
