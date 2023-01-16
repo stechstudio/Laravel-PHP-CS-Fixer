@@ -31,3 +31,4 @@ RUN rm -rf /usr/local/etc/php/conf.d/xdebug.ini
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
+WORKDIR /workspace
