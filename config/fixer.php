@@ -12,13 +12,12 @@ return [
 
     /** The list of directories you want to fix. These are the default laravel directories. */
     'find_directories' => [
-        base_path('/app'),
-        base_path('/config'),
+        base_path('app'),
+        base_path('config'),
         database_path(),
         resource_path(),
-        base_path('/routes'),
-        base_path('/tests')
-
+        base_path('routes'),
+        base_path('tests')
     ],
 
     /** We will fix all files in those directories that match a pattern in this list. */
