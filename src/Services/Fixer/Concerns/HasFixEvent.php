@@ -18,6 +18,7 @@ trait HasFixEvent
     {
         $reportSummary = new ReportSummary(
             $this->filesModified,
+            \count($this->getFinder()),
             $this->getStopWatch()->getEvent('fixFiles')->getDuration(),
             $this->getStopWatch()->getEvent('fixFiles')->getMemory(),
             OutputInterface::VERBOSITY_VERBOSE <= $verbosity,
