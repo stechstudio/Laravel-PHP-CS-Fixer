@@ -2,7 +2,7 @@
 
 return [
     /** Will show up as the configuration name when using this rules configurations. */
-    'config_name' => 'Laravel Fixer',
+    'config_name' => 'Laravel CS Fixer 3.0',
 
     /** By default, we will ignore any and all dot files. */
     'ignore_dot_files' => true,
