@@ -1,3 +1,7 @@
+# Deprecated
+
+**This package is deprecated. We encourage you to look at [Laravel Pint](https://laravel.com/docs/pint) instead.**
+
 # Laravel PHP CS Fixer
 
 The PHP CS Fixer is maintained on GitHub at https://github.com/FriendsOfPHP/PHP-CS-Fixer
