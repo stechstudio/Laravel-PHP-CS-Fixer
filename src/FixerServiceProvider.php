@@ -36,8 +36,8 @@ class FixerServiceProvider extends ServiceProvider
 
     /**
      * Add any package commands if we are running in the console.
-     * 
-     * @return void 
+     *
+     * @return void
      */
     protected function addCommands()
     {
@@ -50,8 +50,8 @@ class FixerServiceProvider extends ServiceProvider
 
     /**
      * Handles configuation for Luman or Laravel
-     * 
-     * @return void 
+     *
+     * @return void
      */
     protected function config()
     {
@@ -63,10 +63,10 @@ class FixerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Handles publishing the configuation class for Luman or Laravel
-     * 
-     * @return void 
-     * @throws BindingResolutionException 
+     * Handles publishing the configuration class for Luman or Laravel
+     *
+     * @return void
+     * @throws BindingResolutionException
      */
     protected function publish()
     {
